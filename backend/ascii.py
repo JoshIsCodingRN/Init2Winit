@@ -2,10 +2,10 @@ import numpy as np
 import cv2 as cv
 import sys
 from PIL import Image, ImageDraw, ImageFont
-from matplotlib import pyplot as plt
 
 
-img = cv.imread(r"C:\Users\howar\Downloads\Mona_Lisa.jpg", cv.IMREAD_GRAYSCALE)
+
+img = cv.imread(r"C:\Users\howar\Downloads\vegeta.jpg", cv.IMREAD_GRAYSCALE)
 assert img is not None, "read error"
 
 height, width = img.shape
@@ -35,7 +35,7 @@ for i in range(height):
     for j in range(width):
         intensity = img[i, j]
         #print(intensity)
-        finalString += strung[int(intensity / 3.80)] + " "
+        finalString += strung[int(intensity / 3.80)]*2
     #f.write(finalString + "\n")
     draw.text((0,i * 12), finalString + "\n", font = ImageFont.truetype("consola.ttf"), fill = "black")
     finalString = ""

@@ -4,7 +4,6 @@ import numpy as np
 import cv2 as cv
 import sys
 import imageio.v2 as io
-from matplotlib import pyplot as plt
 from PIL import Image, ImageDraw, ImageFont
 
 
@@ -28,11 +27,12 @@ for n in range(int(cap.get(cv.CAP_PROP_FRAME_COUNT))):
 
     #print(height, "\n")
     #print(width)
-
-    while (height > 640 or width > 500):
+    tracker = 0
+    while (height > 200 or width > 200):
         img = cv.resize(img, (0,0), fx= 0.9, fy = 0.9)
+        tracker += 1
         height, width = img.shape
-
+    print(tracker)
     #print(height, "\n")
     #print(width)
 
@@ -58,17 +58,17 @@ for n in range(int(cap.get(cv.CAP_PROP_FRAME_COUNT))):
             intensity = abs(img[i, j])
 
             if(intensity * 3.8 > 255):
-                finalString += "." + " "
+                finalString += ".."
             else:
             #print(intensity)
-                finalString += strung[int(intensity / 3.80)] + " "
+                finalString += strung[int(intensity / (3.80 - tracker))]*2
         #f.write(finalString + "\n")
         draw.text((0,i * 12), finalString + "\n", font = ImageFont.truetype("consola.ttf"), fill = "black")
         finalString = ""
 
     image.save(r".\frames\\" + str(n) + ".png")
     
-    print(n / int(cap.get(cv.CAP_PROP_FRAME_COUNT)))
+    print(str(int(100 * (n /cap.get(cv.CAP_PROP_FRAME_COUNT)))) + "%")
     #f.close()
     
 images = []
