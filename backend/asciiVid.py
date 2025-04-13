@@ -9,10 +9,6 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 cap = cv.VideoCapture(r"./images/9000.gif")
-relpath = r"./frames"
-if not os.path.exists(relpath):
-    os.makedirs(relpath)
-assert cap is not None, "read error"
 
 w = cap.get(cv.CAP_PROP_FRAME_WIDTH);
 h = cap.get(cv.CAP_PROP_FRAME_HEIGHT); 
@@ -24,14 +20,16 @@ while (h > 200 or w > 200):
     h = h * 0.9
     w = w * 0.9
     resizeFactor += 1
-print(resizeFactor)
+print("resize factor:" + str(resizeFactor))
 rf = pow(0.9, resizeFactor)
 
 # list of every character in the ascii table with decreasing intensity
 strung = r"$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,^`'."
+frames = []
 
 # LOOP FOR EACH FRAME
 for n in range(int(cap.get(cv.CAP_PROP_FRAME_COUNT))):
+    finalString = ""
     # Read the frame into an image, numpy array
     _, img = cap.read()
     # turn the image into grayscale
@@ -60,15 +58,10 @@ for n in range(int(cap.get(cv.CAP_PROP_FRAME_COUNT))):
         # reset final string each interation so it can fill up with characters from new frame
         finalString = ""
 
-    image.save(r"./frames/frame" + str(n) + ".png")
+    frames.append(image)
     
     print(str(int(100 * (n /cap.get(cv.CAP_PROP_FRAME_COUNT)))) + "%")
     
-images = []
-
-for file in Path("./frames").iterdir():
-    images.append(io.imread(str(file)))
-
-io.mimsave("output.gif", images, duration = cap.get(cv.CAP_PROP_FPS), loop = 0)
+io.mimsave("output.gif", frames, duration = cap.get(cv.CAP_PROP_FPS), loop = 0)
 
 cap.release()
