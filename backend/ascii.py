@@ -22,7 +22,6 @@ print(width)
 
 img = cv.Laplacian(img,cv.CV_64F)
 
-
 strung = r"$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,^`'."
 finalString = ""
 
@@ -44,7 +43,7 @@ for i in range(height):
     finalString = ""
 
 image.show()
-image.save("frame.jpg")
+image.save("frame.png")
 #f.close()           
 
 
