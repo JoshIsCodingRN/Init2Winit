@@ -86,4 +86,3 @@ with io.get_writer("output.gif", mode = 'I') as writer:
 """
 
 cap.release()
-

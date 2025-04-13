@@ -5,7 +5,7 @@ from PIL import Image, ImageDraw, ImageFont
 from matplotlib import pyplot as plt
 
 
-img = cv.imread(r"C:\Users\howar\Downloads\vegeta.jpg", cv.IMREAD_GRAYSCALE)
+img = cv.imread(r"C:\Users\howar\Downloads\Mona_Lisa.jpg", cv.IMREAD_GRAYSCALE)
 assert img is not None, "read error"
 
 height, width = img.shape
@@ -25,8 +25,6 @@ img = cv.Laplacian(img,cv.CV_64F)
 strung = r"$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,^`'."
 finalString = ""
 
-
-
 #with open("output.txt", "w") as f:
 #   sys.stdout = f
 image = Image.new('RGB', (width * 12, height * 12), (255, 255 , 255))
@@ -45,8 +43,3 @@ for i in range(height):
 image.show()
 image.save("frame.png")
 #f.close()           
-
-
-
-
-
