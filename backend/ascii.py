@@ -5,7 +5,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 
-img = cv.imread(r"C:\Users\howar\Downloads\vegeta.jpg", cv.IMREAD_GRAYSCALE)
+img = cv.imread(r"./images/MonaLisa.jpg", cv.IMREAD_GRAYSCALE)
 assert img is not None, "read error"
 
 height, width = img.shape

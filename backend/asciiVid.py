@@ -7,7 +7,7 @@ import imageio.v2 as io
 from PIL import Image, ImageDraw, ImageFont
 
 
-cap = cv.VideoCapture(r"C:\Users\howar\Downloads\9000.gif")
+cap = cv.VideoCapture(r"./images/nyan.gif")
 assert cap is not None, "read error"
 
 w = cap.get(cv.CAP_PROP_FRAME_WIDTH);
@@ -66,14 +66,14 @@ for n in range(int(cap.get(cv.CAP_PROP_FRAME_COUNT))):
         draw.text((0,i * 12), finalString + "\n", font = ImageFont.truetype("consola.ttf"), fill = "black")
         finalString = ""
 
-    image.save(r".\frames\\" + str(n) + ".png")
+    image.save(r"./frames/frame" + str(n) + ".png")
     
     print(str(int(100 * (n /cap.get(cv.CAP_PROP_FRAME_COUNT)))) + "%")
     #f.close()
     
 images = []
 
-for file in Path("C:\\Users\\howar\\Documents\\Workspace1\\Apphack25\\Init2Winit\\backend\\frames\\").iterdir():
+for file in Path("./frames").iterdir():
     images.append(io.imread(str(file)))
 
 io.mimsave("output.gif", images, duration = cap.get(cv.CAP_PROP_FPS), loop = 0)
